@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./akinator-ui
+    container_name: akinator-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    restart: unless-stopped
+    networks:
+      - akinator-network
+
+
+  backend:
+    build: ./backend
+    container_name: akinator-backend
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+    networks:
+      - akinator-network
+
+
+  redis:
+    image: redis:7
+    container_name: akinator-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - akinator-network
+
+networks:
+  akinator-network:
+    driver: bridge
+
+volumes:
+  redis_data:
