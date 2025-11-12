@@ -2,12 +2,12 @@
 
 An Akinator-like game powered by OpenAI's GPT model, built with FastAPI (Python) and React (TypeScript).
 
-## 🛠️ Prerequisites
+##  Prerequisites
 
 - Docker and Docker Compose
 - OpenAI API key (for the AI backend)
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the Repository
 
@@ -37,7 +37,7 @@ This will start all services:
 - Backend API: http://localhost:8000
 - Redis: Running on port 6379
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 .
@@ -56,7 +56,7 @@ This will start all services:
 └── .env                 # Environment variables
 ```
 
-## 🌐 API Endpoints
+## API Endpoints
 
 - `POST /api/start` - Start a new game
 - `POST /api/answer` - Submit an answer to the current question
